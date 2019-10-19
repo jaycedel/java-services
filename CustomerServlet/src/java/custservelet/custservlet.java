@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Johanna
  */
 public class custservlet extends HttpServlet {
-
+ 
     private ServletContext context;
 
     @Override
@@ -30,44 +30,6 @@ public class custservlet extends HttpServlet {
         this.context = config.getServletContext();
     }
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String action = request.getParameter("action");
-        String custId = request.getParameter("custId");
-
-        Customer cust1 = new Customer(1, "Joan", "ph", 1);
-        Customer cust2 = new Customer(2, "Ganda", "sg", 1);
-        Customer cust3 = new Customer(3, "Mo", "in", 1);
-
-        List<Customer> customers = new ArrayList<Customer>();
-        customers.add(cust1);
-        customers.add(cust2);
-        customers.add(cust3);
-
-        if (action == null) {
-
-            request.setAttribute("customers", customers);
-            context.getRequestDispatcher("/list.jsp").forward(request, response);
-        }
-
-        if ("search".equals(action)) {
-
-            request.setAttribute("customer", customers.get(Integer.parseInt(custId) - 1));
-            context.getRequestDispatcher("/customer.jsp").forward(request, response);
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -79,31 +41,23 @@ public class custservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        String action = request.getParameter("action");
+        String custId = request.getParameter("custId");
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+      
+        CustomerClient client = new CustomerClient();
+        
+       // List<Customer> customers = client.get_response();
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        if (action == null) {
+            request.setAttribute("customers", client.getCustomers());
+            context.getRequestDispatcher("/list.jsp").forward(request, response);
+        }
+
+        if ("search".equals(action)) {
+            request.setAttribute("customer", client.getCustomer(custId));
+            context.getRequestDispatcher("/customer.jsp").forward(request, response);
+        }
+    }
 
 }

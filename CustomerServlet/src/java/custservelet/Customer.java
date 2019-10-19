@@ -6,6 +6,8 @@ public class Customer {
     private String name;
     private String country;
     private double balance;
+    private String latitude;
+    private String longtitude;
 
     public Customer(int id, String name, String country, double balance) {
         this.id = id;
@@ -68,6 +70,22 @@ public class Customer {
      */
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongtitude(String longtitude) {
+        this.longtitude = longtitude;
     }
 
 }
