@@ -115,7 +115,7 @@ public class CustomerClient {
         }
 
         System.out.print("Getting name ");
-        System.out.print(customer.getName());
+        System.out.print(customer.toString());
         return customer;
     }
 

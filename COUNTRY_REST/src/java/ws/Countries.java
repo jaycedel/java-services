@@ -47,6 +47,9 @@ public class Countries implements Serializable {
     @Size(max = 100)
     @Column(name = "country_name")
     private String countryName;
+    @Size(max = 100)
+    @Column(name = "currency_code")
+    private String currencyCode;
 
     public Countries() {
     }
@@ -86,6 +89,15 @@ public class Countries implements Serializable {
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
+    
+     public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
 
     @Override
     public int hashCode() {
@@ -111,5 +123,5 @@ public class Countries implements Serializable {
     public String toString() {
         return "ws.Countries[ countryCode=" + countryCode + " ]";
     }
-    
+
 }

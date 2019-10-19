@@ -50,7 +50,8 @@ public class custservlet extends HttpServlet {
             Country countryDetails = countryRestCall.getCountry(customer.getCountry());
             customer.setLatitude(countryDetails.getLatitude());
             customer.setLongtitude(countryDetails.getLongtitude());
-
+            customer.setCountryName(countryDetails.getCountryName());
+            customer.setCurrencyCode(countryDetails.getCurrencyCode());
             request.setAttribute("customer", customer);
             context.getRequestDispatcher("/customer.jsp").forward(request, response);
         }

@@ -3,7 +3,7 @@
     <style>
         #map {
             height: 350px;
-             width: 500px;
+            width: 500px;
         }
     </style>
 
@@ -16,38 +16,39 @@
     <div class="container">
         <h4>This call the customer rest webservices that could be found <a href="http://localhost:8080/CUST_REST/webresources/ws.customer/${customer.id}" target="_blank">here</a></h4> 
         <h4>This call the country rest webservices that returns the country latitude and longtitude to load the map could be found <a href="http://localhost:8080/COUNTRY_REST/webresources/ws.countries/${customer.country}" target="_blank">here</a></h4> 
-        <h3>Name: <c:out value="${customer.name}" /></h3>
-        <h3>Country: <c:out value="${customer.country}" /></h3>
-        
-        <a href='javascript:locate()' class="btn btn-primary">Show Country</a>
-        <input type="button" class="btn btn-secondary" value="Listings" onclick="history.back()">
-         
+        <br>
+        <h3>Customer Name: <c:out value="${customer.name}" /></h3>
+        <h4>Country: <c:out value="${customer.countryName}"/> (<c:out value="${customer.country}"/>)</h4>
+        <h4>Currency: <c:out value="${customer.currencyCode}"/></h4>
+        <!--<a href='javascript:locate()' class="btn btn-primary">Show Country</a>-->
+
         <input type="hidden" id="latitude" value="${customer.latitude}"/>
         <input type="hidden" id="longtitude" value="${customer.longtitude}"/>
         <div id="map"></div>
-        
+        <br><br>
+        <input type="button" class="btn btn-secondary" value="<- Back to Customer Listings" onclick="history.back()">
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeKasUTllOsPhnIT1vik2Wn5FO8N3vCm8&callback=initMap" async defer></script>
-     
-    <script>
-        var map;
-        function initMap() {
-            latitude = document.getElementById("latitude").value;
-            longtitude = document.getElementById("longtitude").value;
-            console.log(latitude);
-            console.log(longtitude);
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: Number(latitude), lng: Number(longtitude)},
-                zoom: 5
-            });
-        }
 
-        function locate() {
-            latitude = document.getElementById("latitude").value;
-            longtitude = document.getElementById("longtitude").value;
-            console.log(latitude);
-            console.log(longtitude);
-            map.setCenter(new google.maps.LatLng(latitude, longtitude));
-        }
+    <script>
+            var map;
+            function initMap() {
+                latitude = document.getElementById("latitude").value;
+                longtitude = document.getElementById("longtitude").value;
+                console.log(latitude);
+                console.log(longtitude);
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: Number(latitude), lng: Number(longtitude)},
+                    zoom: 5
+                });
+            }
+
+            function locate() {
+                latitude = document.getElementById("latitude").value;
+                longtitude = document.getElementById("longtitude").value;
+                console.log(latitude);
+                console.log(longtitude);
+                map.setCenter(new google.maps.LatLng(latitude, longtitude));
+            }
     </script>
 </body>

@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,8 +21,8 @@ public class CountryClient {
     private static final String BASE_URI = "http://localhost:8080/COUNTRY_REST/webresources/ws.countries/";
 
     public static void main(String[] args) {
-        CountryClient customerTester = new CountryClient();
-        customerTester.getCountry("PH");
+        CountryClient countryTester = new CountryClient();
+        countryTester.getCountry("PH");
     }
 
     public Country getCountry(String countryCode) {
@@ -53,17 +51,18 @@ public class CountryClient {
             if (errNodes.getLength() > 0) {
                 Element el = (Element) errNodes.item(0);
                 String countryName = el.getElementsByTagName("countryName").item(0).getTextContent();
+                String currencyCode = el.getElementsByTagName("currencyCode").item(0).getTextContent();
                 String latitude = el.getElementsByTagName("latitude").item(0).getTextContent();
                 String longtitude = el.getElementsByTagName("longtitude").item(0).getTextContent();
 
-                country = new Country(countryCode, latitude, longtitude);
+                country = new Country(countryCode, countryName, currencyCode, latitude, longtitude);
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        System.out.println(country.getLatitude());
+        System.out.println(country.toString());
         return country;
     }
 
