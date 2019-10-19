@@ -37,8 +37,8 @@
             console.log(latitude);
             console.log(longtitude);
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: latitude, lng: longtitude},
-                zoom: 8
+                center: {lat: Number(latitude), lng: Number(longtitude)},
+                zoom: 5
             });
         }
 
