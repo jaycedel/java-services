@@ -17,13 +17,6 @@ import org.xml.sax.InputSource;
 public class CustomerClient {
 
     private static final String BASE_URI = "http://localhost:8080/CUST_REST/webresources/ws.customer/";
-
-    public static void main(String[] args) {
-        CustomerClient customerTester = new CustomerClient();
-        customerTester.getCustomers();
-        customerTester.getCustomer("1");
-    }
-
     /*
     This will call the rest service for customers
      */

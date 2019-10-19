@@ -20,11 +20,6 @@ public class CountryClient {
 
     private static final String BASE_URI = "http://localhost:8080/COUNTRY_REST/webresources/ws.countries/";
 
-    public static void main(String[] args) {
-        CountryClient countryTester = new CountryClient();
-        countryTester.getCountry("PH");
-    }
-
     public Country getCountry(String countryCode) {
         Country country = null;
         try {
