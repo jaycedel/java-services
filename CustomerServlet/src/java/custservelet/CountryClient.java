@@ -15,13 +15,12 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class CountryClient {
 
-    private static final String BASE_URI = "http://localhost:8080/WebApplication1/webresources/custs.customers/";
+    private static final String BASE_URI = "http://localhost:8080/COUNTRY_REST/webresources/ws.countries/";
 
     public static void main(String[] args) {
         CountryClient customerTester = new CountryClient();
@@ -50,20 +49,21 @@ public class CountryClient {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
                     .parse(new InputSource(new StringReader(response.toString())));
 
-            NodeList errNodes = doc.getElementsByTagName("customers");
+            NodeList errNodes = doc.getElementsByTagName("countries");
             if (errNodes.getLength() > 0) {
                 Element el = (Element) errNodes.item(0);
-                String code = el.getElementsByTagName("code").item(0).getTextContent();
+                String countryName = el.getElementsByTagName("countryName").item(0).getTextContent();
                 String latitude = el.getElementsByTagName("latitude").item(0).getTextContent();
                 String longtitude = el.getElementsByTagName("longtitude").item(0).getTextContent();
 
-                country = new Country(code, latitude, longtitude);
+                country = new Country(countryCode, latitude, longtitude);
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
 
+        System.out.println(country.getLatitude());
         return country;
     }
 

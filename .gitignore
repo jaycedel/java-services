@@ -6,3 +6,10 @@
 /TEMP_Convert_Client/build/
 /TEMP_Convert_Server/dist/
 /TEMP_Convert_Server/build/
+/CUST_REST/nbproject/private/
+/CUST_REST/build/
+/CUST_REST/dist/
+/COUNTRY_REST/build/
+/COUNTRY_REST/dist/
+/CustomerServlet/build/
+/CustomerServlet/dist/

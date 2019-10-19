@@ -1,15 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package custservelet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Johanna
  */
 public class custservlet extends HttpServlet {
- 
+
     private ServletContext context;
 
     @Override
@@ -43,19 +34,24 @@ public class custservlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         String custId = request.getParameter("custId");
-
-      
         CustomerClient client = new CustomerClient();
-        
-       // List<Customer> customers = client.get_response();
-
         if (action == null) {
+            //Call customer rest populating request object customers
             request.setAttribute("customers", client.getCustomers());
             context.getRequestDispatcher("/list.jsp").forward(request, response);
         }
 
         if ("search".equals(action)) {
-            request.setAttribute("customer", client.getCustomer(custId));
+            //call rest for customer details
+            Customer customer = client.getCustomer(custId);
+
+            //Call rest for country details
+            CountryClient countryRestCall = new CountryClient();
+            Country countryDetails = countryRestCall.getCountry(customer.getCountry());
+            customer.setLatitude(countryDetails.getLatitude());
+            customer.setLongtitude(countryDetails.getLongtitude());
+
+            request.setAttribute("customer", customer);
             context.getRequestDispatcher("/customer.jsp").forward(request, response);
         }
     }

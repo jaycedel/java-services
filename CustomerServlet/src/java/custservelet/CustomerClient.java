@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package custservelet;
 
 import java.io.BufferedReader;
@@ -21,7 +16,7 @@ import org.xml.sax.InputSource;
 
 public class CustomerClient {
 
-    private static final String BASE_URI = "http://localhost:8080/WebApplication1/webresources/custs.customers/";
+    private static final String BASE_URI = "http://localhost:8080/CUST_REST/webresources/ws.customer/";
 
     public static void main(String[] args) {
         CustomerClient customerTester = new CustomerClient();
@@ -50,7 +45,7 @@ public class CustomerClient {
             }
             in.close();
             //print in String
-            //System.out.println(response.toString());
+            System.out.println(response.toString());
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
                     .parse(new InputSource(new StringReader(response.toString())));
 
@@ -105,7 +100,7 @@ public class CustomerClient {
 
             //https://stackoverflow.com/questions/14566596/loop-through-all-elements-in-xml-using-nodelist
 
-            NodeList errNodes = doc.getElementsByTagName("customers");
+            NodeList errNodes = doc.getElementsByTagName("customer");
             if (errNodes.getLength() > 0) {
                 Element el = (Element) errNodes.item(0);
                 String id = el.getElementsByTagName("id").item(0).getTextContent();
