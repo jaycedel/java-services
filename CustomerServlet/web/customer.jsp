@@ -5,6 +5,18 @@
             height: 350px;
             width: 500px;
         }
+        /* Pattern styles */
+        .left-half {
+            float: left;
+            width: 50%;
+        }
+        .right-half {
+            float: left;
+            width: 50%;
+        }
+        .clearfix {
+            overflow: auto;
+        }
     </style>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,14 +29,24 @@
         <h4>This call the customer rest webservices that could be found <a href="http://localhost:8080/CUST_REST/webresources/ws.customer/${customer.id}" target="_blank">here</a></h4> 
         <h4>This call the country rest webservices that returns the country latitude and longtitude to load the map could be found <a href="http://localhost:8080/COUNTRY_REST/webresources/ws.countries/${customer.country}" target="_blank">here</a></h4> 
         <br>
-        <h3>Customer Name: <c:out value="${customer.name}" /></h3>
-        <h4>Country: <c:out value="${customer.countryName}"/> (<c:out value="${customer.country}"/>)</h4>
-        <h4>Currency: <c:out value="${customer.currencyCode}"/></h4>
-        <!--<a href='javascript:locate()' class="btn btn-primary">Show Country</a>-->
 
+        <section class="container">
+            <div class="left-half">
+                <h3>Customer Name: <c:out value="${customer.name}" /></h3>
+                <h4>Country: <c:out value="${customer.countryName}"/> (<c:out value="${customer.country}"/>)</h4>
+                <h4>Balance: <c:out value="${customer.currencyCode}"/> <c:out value="${customer.balance}"/></h4>
+                <div id="map"></div>
+            </div>
+            <div class="right-half">
+                <h1>Rest Call for Currency Conversion</h1>
+                <p>Currency conversion in here.</p>
+            </div>
+        </section>
+
+        <div style="clearfix"></div>
         <input type="hidden" id="latitude" value="${customer.latitude}"/>
         <input type="hidden" id="longtitude" value="${customer.longtitude}"/>
-        <div id="map"></div>
+
         <br><br>
         <input type="button" class="btn btn-secondary" value="<- Back to Customer Listings" onclick="history.back()">
     </div>
