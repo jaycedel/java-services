@@ -12,15 +12,15 @@ package custservelet;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("CALLING REST COUNTRY CLIENT FOR PHILIPPINES WITH PARAMETER PH");
+        System.out.println("Test calling RESTful web service with country as parameter i.e. PH");
         CountryClient countryTester = new CountryClient();
         countryTester.getCountry("PH");
 
-        System.out.println("CALLING REST FOR CUSTOMER LISTINGS");
+        System.out.println("Test calling REST for Customer Listing");
         CustomerClient customerTester = new CustomerClient();
         customerTester.getCustomers();
 
-        System.out.println("CALLING REST CUSTOMER SPECIFIC CLIENT");
+        System.out.println("Test calling REST customer specific client");
         customerTester.getCustomer("1");
     }
 }

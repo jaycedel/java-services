@@ -38,8 +38,7 @@
                 <div id="map"></div>
             </div>
             <div class="right-half">
-                <h1>Rest Call for Currency Conversion</h1>
-                <p>Currency conversion in here.</p>
+              
             </div>
         </section>
 

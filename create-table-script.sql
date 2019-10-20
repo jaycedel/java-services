@@ -1,10 +1,11 @@
 create table countries
 (
-    country_code varchar(2)   not null
+    country_code  varchar(2)   not null
         primary key,
-    latitude     double       null,
-    longtitude   double       null,
-    country_name varchar(100) null
+    latitude      double       null,
+    longtitude    double       null,
+    country_name  varchar(100) null,
+    currency_code varchar(3)   null
 );
 
 create table customer
